@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if redirect_url %}
+<meta http-equiv="refresh" content="{{ redirect_time }};url={{ redirect_url }}">
+<h4>{{ redirect_message }}</h4>
+{% else %}
+<meta http-equiv="refresh" content="0;url=/">
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block navb_nav %}
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" href="/">Главная страница</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/moscow">Москва</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link active" href="#">Измайлово Бета</a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="static/table1_style.css">
+<style>
+    ul {
+    margin: 0;
+    }
+</style>
+
+<div>
+    {% for main_img, mini_img, img_caption in zipped %}
+    <a data-fancybox="gallery" data-src="{{ main_img }}" data-caption="{{ img_caption }}">
+        <img src="{{ mini_img }}" />
+    </a>
+    {% endfor %}
+</div>
+<br>
+
+<p>
+    Уютный апарт-отель в двух шагах от метро практически в самом сердце Столицы всего за <strong>2200 руб.</strong> за ночь!<br>
+    <strong>Адрес:</strong> Измайловское ш., 71, корп. 2Б
+</p>
+    {% if client %}
+        {% if not_confirmed_order %}
+        <p>У вас есть неподтверждённая бронь. Чтобы осуществить ещё один заказ, пожалуйста, <a href="/client_page">подтвердите</a> текущий.</p>
+        {% else %}
+            <form action="beta" method="post">
+                <p>
+                    Дата заезда:<br>
+                    <input type="date" name="booking_date_first" required><br>
+                    *Самая ранняя доступная дата для заезда: {{ min_available_booking_date_in }}
+                </p>
+
+                <p>
+                    Дата выезда:<br>
+                    <input type="date" name="booking_date_second" required /><br>
+                    *Дата пребывания не может быть менее одной ночи<br>
+                </p>
+                <input type="text" hidden="hidden" name="hotel_name" value="Измайлово Бета" required />
+                <input type="text" hidden="hidden" name="client_email_from_page" value="{{ client_email }}" required />
+                <input type="number" hidden="hidden" name="one_day_price" value="2200" required />
+                <input type="text" hidden="hidden" name="hotel_address" value="Измайловское ш., 71, корп. 2Б" required />
+                <input type="submit" value="Подтвердить" />
+            </form>
+            {% if not_available_booking_dates %}
+            <br>
+            <div class="my_text">
+                <table>
+                  <caption>
+                    Обратите внимание на уже забронированные даты
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Дата заезда</th>
+                      <th scope="col">Дата выезда</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for date in not_available_booking_dates %}
+                    <tr>
+                        <td>{{ date.0 }}</td>
+                      <td>{{ date.1 }}</td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+            {% endif %}
+            </div>
+        {% endif %}
+    {% else %}
+        <p>
+        <a href="/login">Войдите</a> или <a href="/register">зарегистрируйтесь</a>, чтобы забронировать этот отель прямо сейчас.
+        </p>
+    {% endif %}
+{% endblock %}

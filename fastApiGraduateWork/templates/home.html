@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block navb_nav %}
+<ul class="navbar-nav">
+    <li class="nav-item active">
+        {% if home_p %}
+        <a class="nav-link" href="#">Главная страница</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if client %}
+        <a class="nav-link" href="/logout">Выход из аккаунта</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if client %}
+        <a class="nav-link" href="/client_page">Личный кабинет</a>
+        {% else %}
+        <a class="nav-link" href="/login">Авторизация</a>
+        {% endif %}
+    </li>
+    <li class="nav-item">
+        {% if client %}
+        <a class="nav-link" href="#"></a>
+        {% else %}
+        <a class="nav-link" href="/register">Регистрация</a>
+        {% endif %}
+    </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<h1>Добро пожаловать на быстрый и удобный сервис подбора отелей</h1>
+<h6><em><u>С нами всё пройдёт как забронировано</u></em></h6>
+<p>Пожалуйста, выберите город, который вас интересует:</p>
+<p><a href="moscow" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Москва</a></p>
+<p><a href="#" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Санкт-Петербург</a></p>
+<p><a href="#" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Тула</a></p>
+<p><a href="#" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Смоленск</a></p>
+<p><a href="#" class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover">Пермь</a></p>
+{% endblock %}

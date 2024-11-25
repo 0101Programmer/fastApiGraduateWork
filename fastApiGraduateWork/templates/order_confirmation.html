@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block navb_nav %}
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" href="/">Главная страница</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/client_page">Личный кабинет</a>
+    </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="#">Страница оплаты</a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<meta http-equiv="refresh" content="59;url=/">
+<h1>Подтверждение бронирования</h1>
+<br>
+<p>
+    В связи с участившимися случаями отмены брони неблагонадёжными клиентами, пожалуйста, подтвердите бронирование<br>
+    оплатой в течение одной минуты, иначе мы будем вынуждены отменить вашу бронь.<br>
+    Для уточнения деталей заказа перейдите в <a href="/client_page">личный кабинет</a>.
+</p>
+<form action="order_confirmation" method="post">
+    <p>
+        <input type="number" hidden="hidden" value="1" name="pay_confirm" required />
+    </p>
+    <p>
+        <input type="text" hidden="hidden" value="{{ client_email }}" name="client_email" required />
+    </p>
+    <p>Отель: "{{ hotel_name }}"</p>
+    <p>Кол-во ночей: {{ total_days }}</p>
+    <input type="submit" class="btn btn-primary" value="Оплатить {{ one_day_price * total_days }} руб." />
+</form>
+{% endblock %}

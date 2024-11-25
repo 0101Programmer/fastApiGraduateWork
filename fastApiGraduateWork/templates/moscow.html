@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block navb_nav %}
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link" href="/">Главная страница</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="#">Москва</a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+<style>
+    .stretched-link::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: auto;
+    content: "";
+    background-color: rgba(0,0,0,0);
+}
+    .card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
+}
+</style>
+<h1>Москва</h1>
+<p>Сейчас у нас доступны следующие места для размещения:</p>
+
+
+<div class="card-deck">
+    <div class="card">
+        <img class="card-img-top" src="static/moscow/beta.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h4 class="card-title">Отель Измайлово Бета</h4>
+                <p class="card-text">Один из самых просторных отелей в Москве. Позволит действительно ощутить себя как дома.</p>
+            </div>
+        <div class="card-footer">
+            <small class="text-muted">Измайловское ш., 71, корп. 2Б, Москва.</small>
+            <a href="/beta" class="stretched-link"></a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="static/moscow/movenpick.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h4 class="card-title">Movenpiсk Москва Таганская</h4>
+                <p class="card-text">Пятизвездочный отель в историческом центре столицы.</p>
+            </div>
+        <div class="card-footer">
+            <small class="text-muted">Таганский район, улица Земляной Вал, д.70, Москва.</small>
+            <a href="/movenpick" class="stretched-link"></a>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="static/moscow/mercure.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h4 class="card-title">Mercure</h4>
+                <p class="card-text">Отель Mercure Arbat Moscow станет великолепным местом для самостоятельных путешественников, деловых людей и любителей насыщенной экскурсионной программы.</p>
+            </div>
+        <div class="card-footer">
+            <small class="text-muted">Арбат, Смоленская площадь, д.6, Москва.</small>
+            <a href="/mercure" class="stretched-link"></a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
